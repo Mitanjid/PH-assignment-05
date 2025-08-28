@@ -49,4 +49,41 @@
       </div>
     </nav>
 
-   
+    <!-- Banner -->
+    <header class="w-full bg-gradient-to-r from-[#013223] via-[#006747] to-[#013223]">
+      <div class="max-w-7xl mx-auto py-10 md:py-12 px-4 sm:px-6 text-center text-white">
+        <img src="assets/logo-dark.png" alt="govt" class="w-20 h-20 mx-auto mb-4 rounded-full bg-white/5 p-2" />
+        <h1 class="text-3xl md:text-4xl font-extrabold">Emergency Service Directory</h1>
+        <p class="mt-2 text-green-100">
+          Government Emergency Services at Your Fingertips — A Project by the Government of the People's Republic of Bangladesh
+        </p>
+      </div>
+    </header>
+
+    <!-- MAIN -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 -mt-6 mb-14 py-20">
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        <!-- Cards -->
+        <section class="lg:col-span-3">
+          <div id="cardContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </section>
+
+        <!-- History -->
+        <aside class="bg-white rounded-2xl shadow p-4 h-fit">
+          <div class="flex items-center justify-between">
+            <h2 class="font-semibold text-lg flex items-center gap-2">
+              <i class="fa-solid fa-clock-rotate-left"></i> Call History
+            </h2>
+            <button id="clearHistory" class="btn btn-sm bg-[#16A34A]  text-white rounded-full px-4 border-none">Clear</button>
+          </div>
+          <ul id="historyList" class="space-y-3 mt-3 text-sm text-slate-700">
+            <!-- filled by JS -->
+          </ul>
+          <p id="historyEmpty" class="text-slate-400 text-sm mt-2">No calls yet.</p>
+        </aside>
+      </div>
+    </main>
+
+    <script src="home.js"></script>
+  </body>
+</html>
