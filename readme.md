@@ -4,6 +4,9 @@ Questions & Answers
 
 Ans:
 -> getElementById(id): Selects a single element based on its unique id attribute. HTML ids are intended to be unique within a document.
+
 -> getElementsByClassName(className): Selects all elements that possess a specific class name.
+
 ->querySelector('selector') → Selects the first element that matches a CSS selector (e.g., #id, .class, div > p).
+
 ->querySelectorAll('selector') → Selects all elements matching a CSS selector. Returns a NodeList (static).
