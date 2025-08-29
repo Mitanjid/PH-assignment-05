@@ -26,3 +26,81 @@ const historyList = document.getElementById('historyList');
 const historyEmpty = document.getElementById('historyEmpty');
 const clearHistoryBtn = document.getElementById('clearHistory');
 
+// ===== Helpers =====
+function updateNavbar() {
+  coinCountEl.textContent = coins;
+  copyCountEl.textContent = copies;
+  likeCountEl.textContent = likes;
+}
+
+// local-time
+
+function nowLocalString() {
+
+
+  return new Date().toLocaleString();
+}
+
+// new history 
+function addHistoryItem(name, number, time) {
+  historyEmpty.classList.add('hidden');
+  const li = document.createElement('li');
+  li.className = 'flex items-start justify-between bg-slate-50 rounded-xl p-3';
+  li.innerHTML = `
+    <div>
+      <div class="font-semibold">${name}</div>
+      <div class="text-xs text-slate-500">${number}</div>
+    </div>
+    <div class="text-xs text-slate-500">${time}</div>
+  `;
+  historyList.prepend(li);
+}
+
+// Copy to clipboard
+function handleCopy(number) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(number).then(() => {
+      copies++;
+      updateNavbar();
+      alert(`Copied phone number: ${number}`);
+    }).catch(() => fallbackCopy(number));
+  } else {
+    fallbackCopy(number);
+  }
+}
+
+// Fallback copy method
+function fallbackCopy(text) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  document.body.appendChild(ta);
+  ta.select();
+  document.execCommand('copy');
+  document.body.removeChild(ta);
+  copies++;
+  updateNavbar();
+  alert(`Copied phone number: ${text}`);
+}
+// Deduct coins and add history
+function handleCall(name, number) {
+  if (coins < 20) {
+    alert('Not enough coins to make a call. Each call costs 20 coins.');
+    return;
+  }
+  coins -= 20;
+  updateNavbar();
+  alert(`Calling ${name} (${number})...`);
+  addHistoryItem(name, number, nowLocalString());
+}
+// Heart button click
+function handleHeartClick(iconEl) {
+
+  likes++;
+  updateNavbar();
+  // little feedback animation + toggle fill
+  iconEl.classList.toggle('fa-regular');
+  iconEl.classList.toggle('fa-solid');
+  iconEl.classList.toggle('text-rose-500');
+  iconEl.animate([{transform:'scale(1)'},{transform:'scale(1.2)'},{transform:'scale(1)'}],{duration:200});
+}
+
